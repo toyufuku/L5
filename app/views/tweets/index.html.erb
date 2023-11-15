@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag "application.css", :meddia=>"all" %>
+
+<% if flash[:notice] %>
+    <% flash[:notice] %>
+<% end %>
+
+<% @tweets.each do |e| %>
+    <p>
+        <div id=tweet>
+            <%= e.message %>
+            <%=link_to '削除', "/tweets/#{e.id}", data: { turbo_method: :delete } %>
+        </div>
+    </p>
+<% end %>
+
+<%= form_for @tweet, url: {action: :create} do |f| %>
+    <%= f.label :message, 'message' %>
+    <%= f.text_field :message %>
+    <%= f.submit 'ツイート' %>
+<% end %>
+
+<%= link_to 'ユーザー一覧', users_path %>

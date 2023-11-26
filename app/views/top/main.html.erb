@@ -1,3 +1,16 @@
-ロングイン成功でぇ
+<%= stylesheet_link_tag "application.css", :meddia=>"all" %>
 
-<%= link_to "ログアウト", top_logout_path %><br>
+<% if flash[:notice] %>
+    <% flash[:notice] %>
+<% end %>
+
+<% @tweets.each do |e| %>
+    <p>
+        <div id=tweet>
+            <%= e.message %>
+            <%=link_to '削除', "/tweets/#{e.id}", data: { turbo_method: :delete } %>
+            <%=link_to '表示', "/tweets/#{e.id}" %>
+            <%=link_to '編集', "/tweets/#{e.id}/edit" %>
+        </div>
+    </p>
+<% end %>

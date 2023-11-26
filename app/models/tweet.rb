@@ -1,4 +1,5 @@
 class Tweet < ApplicationRecord
     has_many :tweets
-    belongs_to :user
+    has_many :likes, dependent: :destroy
+    has_many :likes_users, source: :user, through: :likes
 end
